@@ -1,0 +1,76 @@
+*******************************************************************
+
+  * LISEZ MOI 
+  * PROJET INFO0601 : EDITEUR HEXADECIMAL 
+  * AUTEURS : Tiziano NARDONE & Christian RAHAL - L3 INFO PASS
+
+*******************************************************************
+
+    COMPILATION : 
+        => ~$ make
+
+*******************************************************************
+
+    EXECUTION :
+        => ~$ ./editeur nomFichier
+            ( nomFichier : Nom du fichier binaire souhaité )
+
+*******************************************************************
+
+    DETAILS :
+        - A l'execution un fichier binaire est créé contenant des 
+          caractères alphabétiques, numériques et de ponctuation 
+          choisi aléatoirement et dont leurs code en décimale est 
+          compris entre 33 et 126. 
+          La nombre total d'octet dans le fichier est un multiple 
+          de 128 et compris entre 128 et 1024.
+
+        - Dans l'interface se trouve 3 fenetres :
+            fenetre 1 :
+                => Informations sur le fichier et ses modifications
+            fenetre 2 : 
+                => Affichage du nombre d'octet en fin de ligne à
+                   partir du début.
+                => Affichage de bloc contenant 128 octets en format
+                   hexadécimal, les caractères indésirables sont 
+                   remplacés par "00".
+            fenetre 3 :
+                => Affichage de bloc contenant 128 octets en format
+                   hexadécimal, les caractères indésirables sont 
+                   remplacés par ".".
+
+*******************************************************************
+
+    UTILISATION :
+        - Pour afficher le bloc suivant
+            => Flèche du bas
+        - Pour afficher le bloc précédent
+            => Flèche du haut
+        - Pour modifier un octet 
+            => Clique gauche de la souris sur l'octet (héxa ou car)
+               Appuyer sur la touche entrée
+               Taper le nouveau caractère 
+        - Pour supprimmer un octet 
+            => Clique gauche de la souris sur l'octet (héxa ou car)
+               Appuyer sur la touche "s"
+        - Pour observer l'octet indésirable 
+            => Clique gauche de la souris sur l'octet (héxa ou car)
+        - Pour déselectionné un octet
+            => Clique gauche sur en dehor des fenetre 2 et 3
+        - Pour fermer l'application 
+            => Appuyer sur la touche F2
+
+        - Remarques :
+            => Il n'est pas possible de selectionné un octet affiché
+               qui par "00" ou "." s'il ne se trouve pas dans le
+               fichier.
+            => Lors de la suppression d'un octet le fichier est 
+               automatiquement sauvegardé et sa taille est modifié, 
+               il est impossible de revenir en arrière.
+            => Pour tester une nouvelle taille de fichier, il est 
+               préférable de taper la commande "make clean",
+               supprimer le fichier binaire s'il est présent avec
+               la commande "rm nomFichier" et compiler puis executer
+               le programme.
+
+*******************************************************************

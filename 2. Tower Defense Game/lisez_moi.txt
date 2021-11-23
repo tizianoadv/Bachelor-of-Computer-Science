@@ -1,0 +1,108 @@
+***********************************************************************************************************
+
+  * LISEZ MOI 
+  * PROJET INFO0601 : JEU TOWER DEFENSE
+  * AUTEURS : Tiziano NARDONE & Christian RAHAL - L3 INFO PASS
+
+***********************************************************************************************************
+
+    COMPILATION : 
+        => ~$ make
+
+***********************************************************************************************************
+
+    EXECUTION exécutable serveur :
+        => ~$ ./serveur port
+            ( port : Numéro de port d'écoute du serveur )
+
+    EXECUTION exécutable client :
+        => ~$ ./client adresse port
+	    ( adresse : adresse d'écoute du serveur )	
+            ( port    : Numéro de port d'écoute du serveur )
+
+***********************************************************************************************************
+    DETAILS - APPLICATION :
+	- L'application comporte 2 exécutables (serveur & client)
+	- L'application permet d'afficher 
+		- la liste des cartes
+		- la liste des scenarios
+		- la liste des parties démarées
+	- L'application permet aussi de démarrer une partie
+          en choisissant une carte et un scénario
+
+	- Au démarrage d'une partie des le serveur (les petits fils)
+		- Transmettent à leur client la carte
+	- Pendant la partie
+		- les petits fils transmettent les requêtes au client
+		- les requêtes sont de 2 types :
+			- Mise de la carte et du jeu
+			- Etat de la partie
+		- Le client affiche à l'utilisateur les informations mises à jour
+	- A la fin de la partie
+		- Le client affiche des messages de fin et se termine
+		- Le petits fils se terminent
+		- Le fils atteste la fin des petits fils
+		- Le fils se termine
+		- Le serveur atteste la fin du fils
+		-> CTRL + C (SIGINT) pour terminer le serveur
+ 
+    DETAILS - COTE SERVEUR :
+        - Les informations visualisables sur le terminal du serveur
+		- ID de requêtes UDP
+		- Etat du serveur UDP
+	        - Création du fils par le serveur
+                - Etat du fils
+                - Reception de connexion TCP
+	        - Attestation fin du fils part le serveur
+                - Création des petits fils par le fils
+                - Etat des petits fils
+                - Attestation fin des petits fils par le serveur
+
+    DETAILS - COTE CLIENT:
+        - Dans l'interface se trouve 5 fenetres :
+            Informations :
+		=> Informations de présentation du jeu 
+                => Informations sur les requêtes à envoyées au serveur UDP
+		=> Liste des cartes, scénarios, parties démarrées
+			=> Choix effectués par l'utilisateurs concernants les requêtes UDP
+		=> Informations sur l'état de la partie
+	    Etat : 
+		=> Affichage de la vie d'origine du joueur
+			-> La vie diminue pendant la partie dès qu'une unité touche le fort
+		=> Affichage de l'argent d'origine du joueur
+		=> Affichage de l'état du freeze d'origine du joueur
+		=> Affichage de l'état de l'unfreeze d'origine du joueur
+	    Carte :
+		=> Affichage de la carte choisie 
+		=> Affichage des temps réél des unités 
+		=> Affichage des emplacement du fort
+		=> Affichage des emplacement des arrivées des unité ordi et des adversairess
+		=> Le numéro des adversaire change en fonction du numéro du joueur
+            Outils : 
+                => Affichage des outils du jeu
+			-> Non implémenté
+            Attaques :
+                => Affichage des attaques du jeu
+			-> Non implémenté
+
+***********************************************************************************************************
+
+    UTILISATION :
+        - Exécution du serveur en premier
+	- Exécution des clients
+	- Suivre les instructions du menu de démarrage pour les actions utilisateur
+	- Attendre la fin de la partie, enjoy :)
+
+        - Remarques :
+            => Il est necessaire de lancer le serveur en premier
+            => Dans cette version seulement 4 joueurs peuvent peuvent se connecter à des parties
+	       malgré qu'il peut exister 2 parties
+	    => Dès que le fils reçoit 4 connexions TCP de client, il s'arrête et attend la fin des
+	       petits fils
+	    => Pour arrêter le serveur (SIGINT)
+	    => Les fils s'arrête dès qu'il atteste l'arrêt des 4 petits fils
+	    => Si l'utilisateur lance une partie, alors les parties déjà démarrées s'affichent 
+	       la liste des parties sera vide si au préalable l'utilisateur n'a pas demandé d'afficher
+               la liste des parties démarrarées au préalable
+
+***********************************************************************************************************
